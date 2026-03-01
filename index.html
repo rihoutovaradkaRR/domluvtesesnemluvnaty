@@ -51,6 +51,7 @@
 
 <!-- O KURZU -->
 <section class="section section-white" id="info">
+    <div class="section-stripes"><div class="stripe-yellow"></div><div class="stripe-red"></div></div>
     <div class="inner">
         <div class="section-head">
             <span class="eyebrow">Kurz Domluvte se s nemluvňaty</span>
@@ -97,6 +98,7 @@
 
 <!-- STAŇ SE LEKTORKOU -->
 <section class="section section-yellow" id="lektorky">
+    <div class="section-stripes"><div class="stripe-yellow"></div><div class="stripe-red"></div></div>
     <div class="inner">
         <div class="section-head">
             <span class="eyebrow">Spolupráce · franchíza · vedení kurzů</span>
@@ -171,6 +173,7 @@
 
 <!-- KONTAKT -->
 <section class="section section-white" id="kontakt">
+    <div class="section-stripes"><div class="stripe-yellow"></div><div class="stripe-red"></div></div>
     <div class="inner">
         <span class="eyebrow">Ozvěte se</span>
         <h2 class="fade-up">Kontakt</h2>
@@ -187,8 +190,8 @@
             </a>
              <div class="contact-big">
                 <span class="contact-label">Facebook</span>
-                <a href="https://www.facebook.com/profile.php?id=61586722362898" target="_blank" style="font-size: clamp(11px, 1.5vw, 18px); display: flex; align-items: center; gap: 8px; text-decoration: none;"><img src="fb.png" alt="Facebook" loading="lazy" style="width: 20px; height: 20px;"><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1877F2;">Domluvte se s nemluvňaty</span></a>
-                <a href="https://www.facebook.com/profile.php?id=61587149484984" target="_blank" style="font-size: clamp(11px, 1.5vw, 18px); display: flex; align-items: center; gap: 8px; text-decoration: none;"><img src="fb.png" alt="Facebook" loading="lazy" style="width: 20px; height: 20px;"><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1877F2;">Bublenky</span></a>
+                <a href="https://www.facebook.com/profile.php?id=61586722362898" target="_blank" style="font-size: clamp(11px, 1.5vw, 18px); display: flex; align-items: center; gap: 8px; text-decoration: none;"><img src="fb.png" alt="Facebook" loading="lazy" style="width: 20px; height: 20px;"><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1877F2; font-weight: 700;">Domluvte se s nemluvňaty</span></a>
+                <a href="https://www.facebook.com/profile.php?id=61587149484984" target="_blank" style="font-size: clamp(11px, 1.5vw, 18px); display: flex; align-items: center; gap: 8px; text-decoration: none;"><img src="fb.png" alt="Facebook" loading="lazy" style="width: 20px; height: 20px;"><span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1877F2; font-weight: 700;">Bublenky</span></a>
             </div>
         </div>
 
@@ -217,11 +220,10 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const fadeEls = document.querySelectorAll('.fade-up');
     const obs = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.12 });
-    fadeEls.forEach(el => obs.observe(el));
+    document.querySelectorAll('.fade-up, .section-stripes').forEach(el => obs.observe(el));
 });
 </script>
 

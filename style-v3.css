@@ -144,14 +144,10 @@ a { text-decoration: none; }
 
 /* Pravý panel — foto */
 .hero-right {
-    background-color: var(--white);
     background-image: url("hero.jpg");
-    background-size: 170%;
-    background-position: center 35%;
+    background-size: auto 100%;
+    background-position: center center;
     background-repeat: no-repeat;
-    background-origin: content-box;
-    background-clip: content-box;
-    padding: 70px 24px 30px;
     position: relative;
     overflow: hidden;
 }
@@ -229,9 +225,40 @@ a { text-decoration: none; }
 .section {
     padding: 100px 64px;
     scroll-margin-top: var(--nav-h);
+    position: relative;
 }
 
 .section-white { background: var(--white); }
+
+/* Animované pruhy na začátku sekcí */
+.section-stripes {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.stripe-yellow {
+    height: 16px;
+    width: 100%;
+    background: var(--yellow);
+    transform: translateX(-100%);
+    transition: transform 0.7s ease;
+}
+
+.stripe-red {
+    height: 16px;
+    width: 100%;
+    background: var(--red);
+    transform: translateX(-100%);
+    transition: transform 0.7s ease 0.15s;
+}
+
+.section-stripes.visible .stripe-yellow,
+.section-stripes.visible .stripe-red {
+    transform: translateX(0);
+}
 
 .section-yellow {
     background: #fffbee;
