@@ -145,7 +145,7 @@ a { text-decoration: none; }
 /* Pravý panel — foto */
 .hero-right {
     background-color: var(--white);
-    background-image: url("hero.webp");
+    background-image: url("hero.jpg");
     background-size: 170%;
     background-position: center 35%;
     background-repeat: no-repeat;
@@ -524,12 +524,26 @@ a { text-decoration: none; }
 /* =============================================
    RESPONSIVE
    ============================================= */
+@media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr 45%; }
+    .section { padding: 80px 40px; }
+    .h-cards { gap: 0; }
+}
+
 @media (max-width: 780px) {
     .hero { grid-template-columns: 1fr; }
     .hero-right { display: none; }
-    .hero-left { padding: 60px 28px; }
-    .section { padding: 70px 28px; }
-    .top-nav { padding: 0 24px; }
+    .hero-left { padding: 100px 24px 60px; }
+    .section { padding: 60px 24px; }
+    .top-nav { top: 12px; right: 16px; }
+    .nav-menu { gap: 20px; padding: 12px 20px; }
+    .nav-menu a { font-size: 14px; }
     .nav-brand { display: none; }
-    .story-strip { flex-direction: column; }
+    .h-cards { display: block; }
+    .h-card { padding: 20px 0; }
+    .contact-row { gap: 0; }
+    .story-strip { flex-direction: column; gap: 20px; }
+    .hero-cta { flex-direction: column; gap: 12px; }
+    .text-cols { columns: 1; }
+    .feature-list { gap: 16px; }
 }
