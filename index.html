@@ -220,10 +220,18 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const obs = new IntersectionObserver((entries) => {
+    const fadeObs = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.fade-up, .section-stripes').forEach(el => obs.observe(el));
+    document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+
+    const stripeObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) e.target.classList.add('visible');
+            else e.target.classList.remove('visible');
+        });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.section-stripes').forEach(el => stripeObs.observe(el));
 });
 </script>
 
