@@ -564,22 +564,21 @@ a { text-decoration: none; }
         height: 100vh;
         height: var(--real-vh, 100svh);
         overflow: hidden;
+        display: grid;
     }
     .hero-left {
         padding: 90px 24px 50px;
         background-image: url("hero.jpg");
         background-size: cover;
-        background-position: right center;
+        background-position: center 30%;
         position: relative;
-        height: 100vh;
-        height: var(--real-vh, 100svh);
         box-sizing: border-box;
     }
     .hero-left::before {
         content: '';
         position: absolute;
         inset: 0;
-        background: rgba(255,255,255,0.82);
+        background: rgba(255,255,255,0.55);
     }
     .hero-left > * { position: relative; }
     .hero-right { display: none; }
