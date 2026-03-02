@@ -219,6 +219,13 @@
 </footer>
 
 <script>
+// Fix pro iOS Safari — nastavi skutečnou výšku viewportu
+function setVh() {
+    document.documentElement.style.setProperty('--real-vh', window.innerHeight + 'px');
+}
+setVh();
+window.addEventListener('resize', setVh);
+
 document.addEventListener('DOMContentLoaded', () => {
     const fadeObs = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });

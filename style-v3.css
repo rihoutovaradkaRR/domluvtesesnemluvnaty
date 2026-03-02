@@ -561,7 +561,8 @@ a { text-decoration: none; }
     .section { scroll-margin-top: 0; }
     .hero {
         grid-template-columns: 1fr;
-        height: 100svh;
+        height: 100vh;
+        height: var(--real-vh, 100svh);
         overflow: hidden;
     }
     .hero-left {
@@ -570,7 +571,8 @@ a { text-decoration: none; }
         background-size: cover;
         background-position: right center;
         position: relative;
-        height: 100svh;
+        height: 100vh;
+        height: var(--real-vh, 100svh);
         box-sizing: border-box;
     }
     .hero-left::before {
