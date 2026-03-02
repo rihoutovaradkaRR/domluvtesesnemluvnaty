@@ -558,9 +558,11 @@ a { text-decoration: none; }
 }
 
 @media (max-width: 780px) {
+    .section { scroll-margin-top: 0; }
     .hero {
         grid-template-columns: 1fr;
-        min-height: 100vh;
+        height: 100svh;
+        overflow: hidden;
     }
     .hero-left {
         padding: 90px 24px 50px;
@@ -568,6 +570,8 @@ a { text-decoration: none; }
         background-size: cover;
         background-position: right center;
         position: relative;
+        height: 100svh;
+        box-sizing: border-box;
     }
     .hero-left::before {
         content: '';
