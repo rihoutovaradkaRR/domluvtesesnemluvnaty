@@ -10,7 +10,7 @@ html { scroll-behavior: smooth; }
     --dark:   #111111;
     --text:   #3a3a3a;
     --white:  #ffffff;
-    --nav-h:  56px;
+    --nav-h:  0px;
 }
 
 body {
