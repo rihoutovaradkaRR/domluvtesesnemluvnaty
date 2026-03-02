@@ -570,7 +570,7 @@ a { text-decoration: none; }
         padding: 90px 24px 50px;
         background-image: url("hero.jpg");
         background-size: cover;
-        background-position: center 45%;
+        background-position: 75% 45%;
         position: relative;
         box-sizing: border-box;
     }
