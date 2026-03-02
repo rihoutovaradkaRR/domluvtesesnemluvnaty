@@ -593,7 +593,8 @@ a { text-decoration: none; }
     .nav-menu a { font-size: 13px; }
     .nav-brand { display: none; }
     .h-cards { display: block; }
-    .h-card { padding: 20px 0; }
+    .h-card { padding: 20px 0; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .h-card-label { min-width: unset; padding-right: 0; }
     .contact-row { gap: 0; }
     .story-strip { flex-direction: column; gap: 20px; }
     .hero-cta { flex-direction: column; gap: 12px; }
