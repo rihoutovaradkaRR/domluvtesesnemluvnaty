@@ -477,6 +477,37 @@ a { text-decoration: none; }
 .story-strip strong { color: var(--red); }
 
 /* =============================================
+   ABOUT INTRO (kontakt)
+   ============================================= */
+.about-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    margin-bottom: 64px;
+    padding-bottom: 64px;
+}
+
+.about-photo {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+.about-text p {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--text);
+}
+
+.about-text p:first-child {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+/* =============================================
    CONTACT
    ============================================= */
 .contact-row {
@@ -595,6 +626,7 @@ a { text-decoration: none; }
     .h-cards { display: block; }
     .h-card { padding: 20px 0; flex-direction: column; align-items: flex-start; gap: 12px; }
     .h-card-label { min-width: unset; padding-right: 0; }
+    .about-intro { grid-template-columns: 1fr; gap: 32px; }
     .contact-row { gap: 0; }
     .story-strip { flex-direction: column; gap: 20px; }
     .hero-cta { flex-direction: column; gap: 12px; }
