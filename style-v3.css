@@ -217,6 +217,27 @@ a { text-decoration: none; }
     white-space: nowrap;
 }
 
+
+.btn-arrow {
+    border: 2px solid var(--red);
+    background: var(--red);
+    color: white;
+    padding: 14px 34px;
+    border-radius: 4px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.btn-arrow:hover {
+    background: #a82e14;
+    transform: translateY(-2px);
+}
+
 .btn-dark:hover { opacity: 0.85; }
 
 /* =============================================
@@ -229,6 +250,32 @@ a { text-decoration: none; }
 }
 
 .section-white { background: var(--white); }
+
+.section-flyer {
+    padding: 0;
+}
+
+.flyer-fullscreen {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 32px 0;
+}
+
+.flyer-fullscreen img {
+    width: 60%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    clip-path: inset(0 8px 0 0);
+}
+
+.flyer-download {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    z-index: 2;
+}
 
 /* Animované pruhy na začátku sekcí */
 .section-stripes {
@@ -400,6 +447,29 @@ a { text-decoration: none; }
     margin-bottom: 0;
 }
 
+.flyer-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 28px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid rgba(204, 58, 26, 0.15);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    margin-bottom: 48px;
+}
+
+.flyer-card-copy {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+@media (max-width: 780px) {
+    .flyer-card { flex-direction: column; align-items: flex-start; }
+}
+
 /* =============================================
    OFFER GRID
    ============================================= */
@@ -490,8 +560,10 @@ a { text-decoration: none; }
 
 .about-photo {
     width: 100%;
+    max-height: 420px;
     border-radius: 12px;
     display: block;
+    object-fit: cover;
 }
 
 .about-text p {
