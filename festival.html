@@ -101,6 +101,18 @@
             z-index: 10;
             text-align: center;
         }
+
+        @media (max-width: 768px) {
+            .festival-page {
+                justify-content: flex-start;
+                padding: 70px 20px 32px;
+                gap: 20px;
+                min-height: 100vh;
+            }
+            .festival-title {
+                font-size: clamp(56px, 20vw, 80px);
+            }
+        }
     </style>
 </head>
 <body>
