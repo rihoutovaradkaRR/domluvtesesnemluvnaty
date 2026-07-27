@@ -229,6 +229,7 @@
             .gallery {
                 grid-template-columns: 1fr;
                 grid-template-rows: auto auto auto;
+                padding: 16px;
             }
             .viewer { grid-row: 1; }
             .viewer img { max-height: 60vh; }
@@ -241,7 +242,15 @@
                 overflow-y: visible;
             }
             .thumb { width: 110px; height: 70px; }
-            .nav { width: 42px; height: 42px; }
+            .nav {
+                width: 38px;
+                height: 38px;
+                top: auto;
+                bottom: 10px;
+                transform: none;
+            }
+            .nav.prev { left: 10px; }
+            .nav.next { right: 10px; }
         }
     </style>
 </head>
