@@ -3,37 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bublinový festival — Domluvte se s nemluvňaty</title>
+    <title>Festival — Domluvte se s nemluvňaty</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Freckle+Face&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style-v3.css?v=4">
     <style>
-        @media (max-width: 768px) {
-            .flyer-fullscreen img {
-                max-height: 70vh;
-                width: auto !important;
-                max-width: 100% !important;
+        :root { color-scheme: light; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #d6f0fb;
+            color: #111;
+            font-family: 'Nunito', sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 32px 24px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Bubliny na pozadí */
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(
+                ellipse at 30% 28%,
+                rgba(255,255,255,0.7) 0%,
+                rgba(255,255,255,0.15) 35%,
+                rgba(200,240,255,0.05) 65%,
+                transparent 100%
+            );
+            border: 1.5px solid rgba(255,255,255,0.6);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.12), 0 0 6px rgba(255,255,255,0.2);
+            z-index: 0;
+        }
+        .bubble::before {
+            content: '';
+            position: absolute;
+            top: 12%; left: 15%;
+            width: 28%; height: 18%;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            filter: blur(4px);
+        }
+        .bubble::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 180deg,
+                rgba(255,120,120,0.18),
+                rgba(255,200,80,0.15),
+                rgba(120,255,180,0.12),
+                rgba(100,200,255,0.15),
+                rgba(180,120,255,0.18),
+                rgba(255,120,120,0.18)
+            );
+        }
+
+        .shell {
+            width: min(1280px, 100%);
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.13);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            padding: 32px 36px 8px;
+            text-align: center;
+            background: linear-gradient(135deg, #29b5e8 0%, #6dd5fa 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.18) 0%, transparent 60%);
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            position: relative;
+            flex-wrap: wrap;
+        }
+        .header h1 {
+            margin: 0;
+            font-family: 'Freckle Face', cursive;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 1;
+            letter-spacing: 0.05em;
+            color: #f5a20a;
+            text-shadow: 3px 3px 0 rgba(180,90,0,0.3), 0 0 40px rgba(255,180,0,0.25);
+        }
+        .btn-register {
+            display: inline-block;
+            padding: 10px 22px;
+            background: #cc3a1a;
+            color: #fff;
+            font-family: 'Freckle Face', cursive;
+            font-size: 1.4rem;
+            letter-spacing: 0.06em;
+            border-radius: 999px;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(150,30,10,0.3);
+            transition: background 0.2s, transform 0.15s;
+            white-space: nowrap;
+        }
+        .btn-register:hover {
+            background: #a83216;
+            transform: translateY(-2px);
+        }
+        .header p {
+            margin: 10px auto 20px;
+            max-width: 700px;
+            color: rgba(255,255,255,0.92);
+            font-size: 1rem;
+            line-height: 1.7;
+            position: relative;
+        }
+
+        .gallery {
+            padding: 24px 28px 18px;
+            display: grid;
+            grid-template-columns: 1fr 180px;
+            grid-template-rows: auto auto;
+            gap: 0 20px;
+        }
+        .viewer {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #f0f8ff;
+            border: 1px solid rgba(41,181,232,0.15);
+            grid-row: 1 / 3;
+        }
+        .viewer img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 88vh;
+            object-fit: contain;
+        }
+        .nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.92);
+            color: #1f2937;
+            border: 1px solid rgba(31,41,55,0.12);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 8px 24px rgba(15,23,42,0.14);
+        }
+        .nav:hover { background: #fff; }
+        .nav.prev { left: 12px; }
+        .nav.next { right: 12px; }
+
+        .caption {
+            margin: 0 0 12px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #5a5a5a;
+            letter-spacing: 0.03em;
+        }
+        .thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+            max-height: 88vh;
+            padding-right: 4px;
+        }
+        .thumb {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            opacity: 0.7;
+            border: 2px solid transparent;
+            transition: opacity 0.18s, border-color 0.18s, transform 0.18s;
+        }
+        .thumb:hover { opacity: 1; transform: translateY(-2px); }
+        .thumb.active { opacity: 1; border-color: #29b5e8; }
+
+        .footer {
+            padding: 16px 28px 24px;
+            display: flex;
+            justify-content: center;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+        }
+        .footer a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            background: #29b5e8;
+            color: white;
+            border-radius: 999px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .footer a:hover { background: #1a9fd0; }
+
+        @media (max-width: 720px) {
+            .header h1 { font-size: 3rem; }
+            .gallery {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
             }
+            .viewer { grid-row: 1; }
+            .viewer img { max-height: 60vh; }
+            .caption { margin-top: 12px; }
+            .thumbnails {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                max-height: none;
+                overflow-y: visible;
+            }
+            .thumb { width: 110px; height: 70px; }
+            .nav { width: 42px; height: 42px; }
         }
     </style>
 </head>
 <body>
-    <nav class="top-nav">
-        <ul class="nav-menu">
-            <li><a href="index.html">Hlavní stránka</a></li>
-        </ul>
-    </nav>
+    <!-- Bubliny na pozadí -->
+    <div class="bubble" style="width:280px;height:280px;top:-60px;left:-80px;"></div>
+    <div class="bubble" style="width:180px;height:180px;top:40px;left:30%;"></div>
+    <div class="bubble" style="width:220px;height:220px;top:-40px;right:-50px;"></div>
+    <div class="bubble" style="width:100px;height:100px;top:200px;right:40px;"></div>
+    <div class="bubble" style="width:70px;height:70px;top:320px;left:60px;"></div>
+    <div class="bubble" style="width:300px;height:300px;bottom:-80px;left:-60px;"></div>
+    <div class="bubble" style="width:250px;height:250px;bottom:-60px;right:-60px;"></div>
+    <div class="bubble" style="width:120px;height:120px;bottom:160px;right:80px;"></div>
+    <div class="bubble" style="width:60px;height:60px;bottom:280px;left:120px;"></div>
 
-    <main>
-        <section class="section section-white section-flyer">
-            <div class="flyer-fullscreen">
-                <img src="festival.jpeg" alt="Bublinový festival — Domluvte se s nemluvňaty" loading="lazy" style="width: min(100%, 900px); max-width: none;">
+    <div class="shell">
+        <div class="header">
+            <div class="header-top">
+                <h1>Bublinový festival</h1>
+                <a class="btn-register" href="https://docs.google.com/forms/d/e/1FAIpQLSeCSsGcX8RbkEciUGR6ft5Ldgalk93KzMRUJv4rOZfKaKvYOg/viewform" target="_blank" rel="noopener">REGISTRACE ZDE</a>
             </div>
-        </section>
-        <section class="section section-white" style="padding-top: 8px; padding-bottom: 24px;">
-            <div class="inner" style="text-align:center;">
-                <a class="btn-primary" href="index.html">Zpět na hlavní stránku</a>
+            <p>Prohlédněte si série letáků jako  galerii. Použijte šipky vlevo / vpravo.</p>
+        </div>
+        <div class="gallery">
+            <div class="viewer">
+                <button class="nav prev" aria-label="Předchozí">◀</button>
+                <img id="mainImage" src="letak1.jpeg" alt="Festival leták">
+                <button class="nav next" aria-label="Další">▶</button>
             </div>
-        </section>
-    </main>
+            <div class="caption" id="caption">1 / 6</div>
+            <div class="thumbnails" id="thumbs"></div>
+        </div>
+        <div class="footer">
+            <a href="index.html">Zpět na hlavní stránku</a>
+        </div>
+    </div>
+    <script>
+        const images = [
+            'letak6.jpeg',
+            'letak4.jpeg',
+            'letak2.jpeg',
+            'letak5.jpeg',
+            'letak3.jpeg',
+            'letak1.jpeg'
+        ];
+        const mainImage = document.getElementById('mainImage');
+        const caption = document.getElementById('caption');
+        const thumbs = document.getElementById('thumbs');
+        let idx = 0;
+        function show(i) {
+            if (i < 0) i = images.length - 1;
+            if (i >= images.length) i = 0;
+            idx = i;
+            mainImage.src = images[idx];
+            caption.textContent = `${idx + 1} / ${images.length}`;
+            Array.from(thumbs.children).forEach((el, j) => el.classList.toggle('active', j === idx));
+        }
+        document.querySelector('.nav.prev').addEventListener('click', () => show(idx - 1));
+        document.querySelector('.nav.next').addEventListener('click', () => show(idx + 1));
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') show(idx - 1);
+            if (e.key === 'ArrowRight') show(idx + 1);
+        });
+        images.forEach((src, i) => {
+            const thumb = document.createElement('img');
+            thumb.src = src;
+            thumb.alt = `Miniatura ${i + 1}`;
+            thumb.className = 'thumb';
+            thumb.addEventListener('click', () => show(i));
+            thumbs.appendChild(thumb);
+        });
+        show(0);
+    </script>
 </body>
 </html>
